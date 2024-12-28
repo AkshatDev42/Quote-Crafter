@@ -14,7 +14,10 @@ const ThemeProvider: React.FC<{children: ReactNode}> = ({children}): React.React
 }
 
 const useTheme = () =>{
-    return useContext(ThemeContext)
+    const context = useContext(ThemeContext)
+    if(context === undefined)
+        throw new Error("useTheme must be used with ThemeProvider") 
+    return context
 }
 
 export {ThemeProvider, useTheme}
